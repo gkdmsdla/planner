@@ -9,7 +9,7 @@ sparta  일정관리앱
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| POST | /api/schedules | - |
+| POST | /api/schedules | Session |
 
 #### 2. 요청
 
@@ -47,7 +47,7 @@ sparta  일정관리앱
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| GET | /api/schedules | - |
+| GET | /api/schedules | Session |
 
 #### 2. 요청
 
@@ -81,7 +81,7 @@ sparta  일정관리앱
 
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| GET | /api/schedules/{Id} | - |
+| GET | /api/schedules/{Id} | Session |
 
 #### 2. 요청
 
@@ -119,7 +119,7 @@ sparta  일정관리앱
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| PATCH | /api/schedules/{Id} | - |
+| PATCH | /api/schedules/{Id} | Session |
 
 #### 2. 요청
 
@@ -163,7 +163,7 @@ sparta  일정관리앱
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| DELETE | /api/schedules/{Id} | - |
+| DELETE | /api/schedules/{Id} | Session |
 
 #### 2. 요청
 
@@ -202,7 +202,7 @@ sparta  일정관리앱
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| POST | /api/user/signup | - |
+| POST | /api/users | Session |
 
 #### 2. 요청
 
@@ -234,12 +234,12 @@ sparta  일정관리앱
 " 비밀번호 작성은 필수입니다. "
 
 
-## 전체 일정 조회
+## 전체 유저 조회
 
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| GET | /api/user | - |
+| GET | /api/user | Session |
 
 #### 2. 요청
 
@@ -266,13 +266,13 @@ sparta  일정관리앱
 
 " 요청이 올바르지 않습니다. "
 
-## 선택 일정 조회
+## 선택 유저 조회
 
 #### 1. 기본정보
 
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| GET | /api/user/{Id} | - |
+| GET | /api/user/{Id} | Session |
 
 #### 2. 요청
 
@@ -303,12 +303,12 @@ sparta  일정관리앱
 
 " 요청하신 유저가 존재하지 않습니다. "
 
-## 일정 수정
+## 유저 정보 수정
 
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| PATCH |  /api/user/{Id} | - |
+| PATCH |  /api/user/{Id} | Session |
 
 #### 2. 요청
 
@@ -347,12 +347,12 @@ sparta  일정관리앱
 
 " 유저가 존재하지 않습니다. "
 
-## 일정 삭제
+## 유저 삭제
 
 #### 1. 기본정보
 | Method | URL | 인증방식 |
 |------|--------|-----|
-| DELETE |  /api/user/{Id} | - |
+| DELETE |  /api/user/{Id} | Session |
 
 #### 2. 요청
 
@@ -388,5 +388,32 @@ sparta  일정관리앱
 <details><summary> 로그인
 </summary>
 
+#### 1. 기본정보
+| Method | URL | 인증방식 |
+|------|--------|-----|
+| POST | /api/auth/login | - |
 
+#### 2. 요청
+
+(1) Request Header
+
+- Content-Type: application/json
+
+(2) Request Body
+
+- 이메일 (필수)
+- 비밀번호 (필수)
+
+#### 3. 응답
+
+#### Status Code : 200 OK
+ 
+(1) Response Body
+
+message : " 로그인 성공 "
+
+#### Status Code : 401 Unauthorized
+(1) Response Body
+
+" 비밀번호가 올바르지 않습니다. "
 </details>
