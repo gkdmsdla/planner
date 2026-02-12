@@ -1,7 +1,6 @@
 package com.example.planner2.schedule.dto;
 
 import lombok.Getter;
-import org.springframework.lang.Contract;
 
 import java.time.LocalDateTime;
 
