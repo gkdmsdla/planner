@@ -1,16 +1,12 @@
 package com.example.planner2.user.service;
 
-import com.example.planner2.auth.dto.SessionUser;
 import com.example.planner2.user.dto.*;
 import com.example.planner2.user.entity.User;
 import com.example.planner2.user.repository.UserRepository;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.ArrayList;
 import java.util.List;

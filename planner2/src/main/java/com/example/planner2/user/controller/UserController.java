@@ -2,15 +2,12 @@ package com.example.planner2.user.controller;
 
 import com.example.planner2.auth.dto.SessionUser;
 import com.example.planner2.user.dto.*;
-import com.example.planner2.user.entity.User;
-import com.example.planner2.user.repository.UserRepository;
 import com.example.planner2.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +29,7 @@ public class UserController {
     }
 
     // 유저 선택 조회
-    @GetMapping("/{userId}")
+    @GetMapping("/{id}")
     public ResponseEntity<GetOneUserResponse> getMyInfo(@SessionAttribute("user") SessionUser sessionUser) {
         String email = sessionUser.getEmail(); // 세션에서 로그인한 유저 이메일 가져오기
         GetOneUserResponse response = userService.getOneUserByEmail(email);
@@ -52,7 +49,7 @@ public class UserController {
 
 
     // 유저 수정
-    @PutMapping("/{userId}")
+    @PutMapping("/{id}")
     public ResponseEntity<UpdateUserResponse> updateUser(
             @RequestBody UpdateUserRequest request,
             HttpSession session
@@ -73,7 +70,7 @@ public class UserController {
 
 
     // 유저 삭제
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(
             @PathVariable Long id,
             HttpSession session
