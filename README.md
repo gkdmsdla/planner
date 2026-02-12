@@ -30,6 +30,7 @@ sparta  일정관리앱
  
 (1) Response Body
 
+- id
 - 유저명 
 - 일정 제목 
 - 일정 내용 
@@ -62,6 +63,7 @@ sparta  일정관리앱
 (1) Response Body
 
 - 일정 목록 (리스트)
+  - id
   - 유저명
   - 일정 제목 
   - 일정 내용
@@ -101,6 +103,7 @@ sparta  일정관리앱
  
 (1) Response Body
 
+- id
 - 유저명 
 - 일정 제목
 - 일정 내용
