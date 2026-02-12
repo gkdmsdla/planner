@@ -7,6 +7,7 @@ import com.example.planner2.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 @RequiredArgsConstructor
@@ -46,7 +47,10 @@ public class UserService {
 
     // 유저 선택 조회
 
+
     // 유저 전체 조회
 
+
     // 유저 삭제
+
 }

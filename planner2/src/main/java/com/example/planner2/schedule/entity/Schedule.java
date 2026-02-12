@@ -1,7 +1,7 @@
 package com.example.planner2.schedule.entity;
 
 
-import com.example.planner2.user.entity.BaseEntity;
+import com.example.planner2.global.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

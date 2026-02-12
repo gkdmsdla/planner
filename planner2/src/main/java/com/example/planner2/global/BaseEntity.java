@@ -1,4 +1,4 @@
-package com.example.planner2.user.entity;
+package com.example.planner2.global;
 
 import jakarta.persistence.*;
 import lombok.Getter;
