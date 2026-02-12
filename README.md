@@ -226,6 +226,7 @@ sparta  일정관리앱
  
 (1) Response Body
 
+- id
 - 유저명
 - 이메일
 - 회원가입일
@@ -258,6 +259,7 @@ sparta  일정관리앱
 (1) Response Body
 
 - 일정 목록 (리스트)
+ - id 
  - 유저명
  - 이메일
  - 회원가입일
@@ -296,6 +298,7 @@ sparta  일정관리앱
  
 (1) Response Body
 
+- id
 - 유저명
 - 이메일
 - 회원가입일
@@ -338,6 +341,7 @@ sparta  일정관리앱
  
 (1) Response Body
 
+- id
 - 유저명
 - 개인정보 수정일
 
