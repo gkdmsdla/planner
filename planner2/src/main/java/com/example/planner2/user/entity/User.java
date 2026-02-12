@@ -32,7 +32,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public void update(String username) {
+    public void update(String username){
         this.username = username;
     }
 }

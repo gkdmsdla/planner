@@ -1,7 +1,10 @@
 package com.example.planner2.user.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import java.time.LocalDateTime;
 
+@Getter
 public class UpdateUserResponse {
 
     private final Long id;

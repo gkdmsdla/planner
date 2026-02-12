@@ -1,5 +1,8 @@
 package com.example.planner2.auth.dto;
 
+import lombok.Getter;
+
+@Getter
 public class SessionUser {
 
     private final Long id;
