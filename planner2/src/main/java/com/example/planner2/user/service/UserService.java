@@ -26,7 +26,7 @@ public class UserService {
 
         if (userRepository.existsByUsername(request.getUsername())) {
 
-            throw new IllegalArgumentException("이미 사용 중인 유저이름입니다.");
+            throw new IllegalArgumentException("이미 사용 중인 유저 이름입니다.");
         }
 
         User user = new User(
