@@ -421,3 +421,7 @@ message : " 로그인 성공 "
 
 " 비밀번호가 올바르지 않습니다. "
 </details>
+
+#### ERD
+<img width="297" height="788" alt="image" src="https://github.com/user-attachments/assets/3a351b5d-6d60-46c0-89b9-692f1a247445" />
+
