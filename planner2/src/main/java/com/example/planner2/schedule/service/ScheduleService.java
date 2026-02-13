@@ -6,6 +6,8 @@ import com.example.planner2.schedule.dto.GetOneScheduleResponse;
 import com.example.planner2.schedule.dto.UpdateScheduleRequest;
 import com.example.planner2.schedule.entity.Schedule;
 import com.example.planner2.schedule.repository.ScheduleRepository;
+import com.example.planner2.user.entity.User;
+import com.example.planner2.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,24 +22,26 @@ import java.util.stream.Collectors;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
 
     // 생성
     @Transactional
     public CreateScheduleResponse createSchedule(CreateScheduleRequest request, String username) {
-
+        User user = userRepository.findByUsername(username).orElseThrow(
+                ()->new IllegalStateException("존재하지 않는 사용자입니다.")
+        );
         // 세션에서 로그인된 유저인지 확인하는 로직은 컨트롤러에서 처리 가능
         Schedule schedule = new Schedule(
-                username,
+                user.getId(),
                 request.getTitle(),
-                request.getContent(),
-                request.getCreatedAt() != null ? request.getCreatedAt() : LocalDateTime.now()
+                request.getContent()
         );
 
         Schedule savedSchedule = scheduleRepository.save(schedule);
 
         return new CreateScheduleResponse(
                 savedSchedule.getId(),
-                savedSchedule.getUsername(),
+                savedSchedule.getUserId(),
                 savedSchedule.getTitle(),
                 savedSchedule.getContent(),
                 savedSchedule.getCreatedAt(),
@@ -51,13 +55,16 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("일정을 찾을 수 없습니다."));
 
-        if (!schedule.getUsername().equals(username)) {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                ()->new IllegalStateException("존재하지 않는 사용자입니다.")
+        );
+        if (!schedule.getUserId().equals(user.getId())) {
             throw new IllegalArgumentException("조회 권한이 없습니다.");
         }
 
         return new GetOneScheduleResponse(
                 schedule.getId(),
-                schedule.getUsername(),
+                schedule.getUserId(),
                 schedule.getTitle(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),
@@ -67,11 +74,14 @@ public class ScheduleService {
 
     // 전체 조회
     public List<CreateScheduleResponse> getAllSchedules(String username) {
-        return scheduleRepository.findAllByUsername(username)
+        User user = userRepository.findByUsername(username).orElseThrow(
+                ()->new IllegalStateException("존재하지 않는 사용자입니다.")
+        );
+        return scheduleRepository.findAllByUserId(user.getId())
                 .stream()
                 .map(s -> new CreateScheduleResponse(
                         s.getId(),
-                        s.getUsername(),
+                        s.getUserId(),
                         s.getTitle(),
                         s.getContent(),
                         s.getCreatedAt(),
@@ -85,7 +95,10 @@ public class ScheduleService {
     public CreateScheduleResponse updateSchedule(Long id, UpdateScheduleRequest request, String username) {
         Schedule schedule = scheduleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("일정을 찾을 수 없습니다."));
-        if (!schedule.getUsername().equals(username)) {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                ()->new IllegalStateException("존재하지 않는 사용자입니다.")
+        );
+        if (!schedule.getUserId().equals(user.getId())) {
             throw new IllegalArgumentException("수정 권한이 없습니다.");
         }
 
@@ -94,7 +107,7 @@ public class ScheduleService {
 
         return new CreateScheduleResponse(
                 updated.getId(),
-                updated.getUsername(),
+                updated.getUserId(),
                 updated.getTitle(),
                 updated.getContent(),
                 updated.getCreatedAt(),
@@ -107,7 +120,10 @@ public class ScheduleService {
     public String deleteSchedule(Long id, String username) {
         Schedule schedule = scheduleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("일정을 찾을 수 없습니다."));
-        if (!schedule.getUsername().equals(username)) {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                ()->new IllegalStateException("존재하지 않는 사용자입니다.")
+        );
+        if (!schedule.getUserId().equals(user.getId())) {
             throw new IllegalArgumentException("삭제 권한이 없습니다.");
         }
         scheduleRepository.delete(schedule);

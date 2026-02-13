@@ -8,15 +8,15 @@ import java.time.LocalDateTime;
 public class GetOneScheduleResponse {
 
     private Long id;
-    private String userName;
+    private Long userId;
     private String title;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
-    public GetOneScheduleResponse(Long id, String userName, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public GetOneScheduleResponse(Long id, Long userId, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
-        this.userName = userName;
+        this.userId = userId;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;

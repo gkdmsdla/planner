@@ -1,5 +1,6 @@
 package com.example.planner2.schedule.controller;
 
+import com.example.planner2.auth.dto.SessionUser;
 import com.example.planner2.schedule.dto.CreateScheduleRequest;
 import com.example.planner2.schedule.dto.CreateScheduleResponse;
 import com.example.planner2.schedule.dto.GetOneScheduleResponse;
@@ -24,7 +25,8 @@ public class ScheduleController {
 
     // 로그인된 유저 가져오기
     private String getLoginUser() {
-        String username = (String) session.getAttribute("username");
+        SessionUser sessionUser = (SessionUser) session.getAttribute("loginUser");
+        String username = sessionUser.getUserName();
         if (username == null) throw new IllegalStateException("로그인이 필요합니다.");
         return username;
     }

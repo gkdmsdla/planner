@@ -32,7 +32,7 @@ public class AuthController {
 
         // 세션용 DTO 생성
         SessionUser sessionUser =
-                new SessionUser(user.getId(), user.getEmail());
+                new SessionUser(user.getId(), user.getEmail(), user.getUsername());
 
         // 세션에 저장
         session.setAttribute("loginUser", sessionUser);

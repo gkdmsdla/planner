@@ -1,6 +1,7 @@
 package com.example.planner2.schedule.entity;
 
 
+import com.example.planner2.global.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,33 +11,26 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Schedule {
+public class Schedule extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username; // 로그인 유저
-
+    // private String username; // 로그인 유저
+    private Long userId;
     private String title;
 
     private String content;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime modifiedAt;
-
-    public Schedule(String username, String title, String content, LocalDateTime createdAt) {
-        this.username = username;
+    public Schedule(Long userId, String title, String content) {
+        this.userId = userId;
         this.title = title;
         this.content = content;
-        this.createdAt = createdAt;
-        this.modifiedAt = createdAt;
     }
 
     // 수정 메서드
     public void updateContent(String content) {
         this.content = content;
-        this.modifiedAt = LocalDateTime.now();
     }
 }
